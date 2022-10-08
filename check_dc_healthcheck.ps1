@@ -23,5 +23,6 @@ foreach ($DC in $DCs.servers) {
     $AllDCDiags += $dcdiag_res
 }
 
+$AllDCDiags | Export-Csv -Path $PSScriptRoot\dcdiag_output.csv -NoTypeInformation
+$AllDCDiags | fl | Out-String
 $AllDCDiags | Out-GridView
-$AllDCDiags | ft -AutoSize
