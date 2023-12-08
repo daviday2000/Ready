@@ -123,7 +123,6 @@ function Invoke-DcDiag {
     }
     $dcdiag_res
 }
-
 $AllDCDiags = @()
 $repadmin = @()
 $DCs = ([System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()).sites
@@ -139,7 +138,6 @@ foreach ($DC in $DCs.servers) {
     $repadm | ft  | Out-String
     $repadmin += $repadm
 }
-
 $AllDCDiags | Export-Csv -Path $PSScriptRoot\dcdiag_output.csv -NoTypeInformation
 $AllDCDiags | fl | Out-String
 $AllDCDiags | Out-GridView
