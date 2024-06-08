@@ -127,7 +127,7 @@ $AllDCDiags = @()
 $repadmin = @()
 $DCs = ([System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()).sites
 foreach ($DC in $DCs.servers) {
-    $dcdiag =  $null
+    $dcdiag = $null
     $repadm = $null
     Write-Host "Working on... $($DC.name)"
     $dcdiag_res = Invoke-DcDiag -DomainController $DC.name
@@ -139,7 +139,7 @@ foreach ($DC in $DCs.servers) {
     $repadmin += $repadm
 }
 $AllDCDiags | Export-Csv -Path $PSScriptRoot\dcdiag_output.csv -NoTypeInformation
-$AllDCDiags | fl | Out-String
+$AllDCDiags | Format-List | Out-String
 $AllDCDiags | Out-GridView
 
 $repadmin | Export-Csv -Path $PSScriptRoot\dcdiag_output.csv -NoTypeInformation
